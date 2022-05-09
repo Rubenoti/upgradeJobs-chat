@@ -1,7 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-
-
 const http = require('http');
 const { Server } = require('socket.io');
 
@@ -10,14 +8,15 @@ const app = express();
 
 const serverM = http.createServer(app);
 
-serverM.use((req, res, next) => {
+
+app.use((req, res, next) => {
     res.header('Access-Control-Allow-Methods', 'GET,POST');
     res.header('Access-Control-Allow-Credentials', true);
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 });
 
-const io = new Server(serverM, {
+const io = new Server(app, {
     cors: {
         origin: 'https://upgrade-jobs-app.vercel.app',
         methods: ['GET', 'PUSH'],
