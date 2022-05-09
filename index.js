@@ -15,7 +15,18 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 });
-
+app.use(
+    cors({
+        origin: [
+            'http://localhost:3000',
+            'https://localhost:4200',
+            'https://localhost:5500',
+            'http://127.0.0.1:5500',
+            'https://upgrade-jobs-app.vercel.app',
+        ],
+        credentials: true,
+    })
+);
 const io = new Server(app, {
     cors: {
         origin: 'https://upgrade-jobs-app.vercel.app',
