@@ -47,7 +47,7 @@ app.disable('x-powered-by');
 const serverM = http.createServer(app);
 const io = new Server(serverM, {
     cors: {
-        origin: 'http://localhost:3000',
+        origin: 'https://upgrade-jobs-app.vercel.app',
         methods: ['GET', 'PUSH'],
     },
 });
