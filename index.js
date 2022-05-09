@@ -30,7 +30,9 @@ app.use(
 const io = new Server(app, {
     cors: {
         origin: 'https://upgrade-jobs-app.vercel.app',
+
         methods: ['GET', 'PUSH'],
+        allowedHeaders: ['Access-Control-Allow-Origin', 'Access-Control-Allow-Credentials', 'Access-Control-Allow-Headers', 'Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
     },
 });
 
