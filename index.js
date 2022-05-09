@@ -8,31 +8,12 @@ const app = express();
 
 const serverM = http.createServer(app);
 
-
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Methods', 'GET,POST');
-    res.header('Access-Control-Allow-Credentials', true);
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-});
-app.use(
-    cors({
-        origin: [
-            'http://localhost:3000',
-            'https://localhost:4200',
-            'https://localhost:5500',
-            'http://127.0.0.1:5500',
-            'https://upgrade-jobs-app.vercel.app',
-        ],
-        credentials: true,
-    })
-);
-const io = new Server(app, {
+const io = new Server(serverM, {
     cors: {
         origin: 'https://upgrade-jobs-app.vercel.app',
 
         methods: ['GET', 'PUSH'],
-        allowedHeaders: ['Access-Control-Allow-Origin', 'Access-Control-Allow-Credentials', 'Access-Control-Allow-Headers', 'Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
+        allowedHeaders: ['Access-Control-Allow-Origin'],
     },
 });
 
