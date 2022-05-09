@@ -7,19 +7,23 @@ const { Server } = require('socket.io');
 
 const app = express();
 
-app.use((req, res, next) => {
+
+const serverM = http.createServer(app);
+
+serverM.use((req, res, next) => {
     res.header('Access-Control-Allow-Methods', 'GET,POST');
     res.header('Access-Control-Allow-Credentials', true);
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 });
-const serverM = http.createServer(app);
+
 const io = new Server(serverM, {
     cors: {
         origin: 'https://upgrade-jobs-app.vercel.app',
         methods: ['GET', 'PUSH'],
     },
 });
+
 io.on('connection', (socket) => {
     socket.on('join_room', (data) => {
         socket.join(data);
