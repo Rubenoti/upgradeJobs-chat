@@ -7,11 +7,11 @@ const app = express();
 
 const serverM = http.createServer(app);
 
-const io = new Server(serverM, app, {
+const io = new Server(serverM, {
     cors: {
         origin: '*',
         methods: ['GET', 'PUSH'],
-        allowedHeaders: ["my-custom-header"],
+        allowedHeaders: ["Access-Control-Allow-Origin"],
         credentials: true
     },
 });
