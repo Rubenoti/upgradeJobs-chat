@@ -9,7 +9,7 @@ const serverM = http.createServer(app);
 
 const io = new Server(serverM, {
     cors: {
-        origin: '*',
+        origin: 'https://upgrade-jobs-app.vercel.app',
         methods: ['GET', 'PUSH'],
         allowedHeaders: ["Access-Control-Allow-Origin"],
         credentials: true
