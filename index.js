@@ -12,7 +12,10 @@ const io = new Server(serverM, app, {
         origin: 'https://upgrade-jobs-app.vercel.app',
 
         methods: ['GET', 'PUSH'],
-        allowedHeaders: ['Access-Control-Allow-Origin'],
+        allowRequest: (req, callback) => {
+            const noOriginHeader = req.headers.origin === undefined;
+            callback(null, noOriginHeader);
+        }
     },
 });
 
