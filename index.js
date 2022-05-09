@@ -10,12 +10,9 @@ const serverM = http.createServer(app);
 const io = new Server(serverM, app, {
     cors: {
         origin: 'https://upgrade-jobs-app.vercel.app',
-
         methods: ['GET', 'PUSH'],
-        allowRequest: (req, callback) => {
-            const noOriginHeader = req.headers.origin === undefined;
-            callback(null, noOriginHeader);
-        }
+        allowedHeaders: ["my-custom-header"],
+        credentials: true
     },
 });
 
