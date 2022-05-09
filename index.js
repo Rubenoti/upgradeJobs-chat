@@ -5,10 +5,9 @@ const { Server } = require('socket.io');
 
 const app = express();
 
-
 const serverM = http.createServer(app);
 
-const io = new Server(serverM, {
+const io = new Server(serverM, app, {
     cors: {
         origin: 'https://upgrade-jobs-app.vercel.app',
 
